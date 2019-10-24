@@ -17,6 +17,7 @@ namespace Engine
         CameraManager camera;
         FrameRateCounter counter;
         DebugDrawer debug;
+        PhysicsManager physics;
 
         private Scene activeScene;
         public Scene ActiveScene { get { return activeScene; } }
@@ -29,6 +30,7 @@ namespace Engine
             camera = new CameraManager(game);
             debug = new DebugDrawer();
             counter = new FrameRateCounter(game);
+            physics = new PhysicsManager(game);
 
         }
 

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Engine;
 using Client.Scenes;
+using Engine.Managers;
 
 namespace Client
 {
@@ -14,6 +15,7 @@ namespace Client
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameEngine engine;
+        
 
         public Game1()
         {

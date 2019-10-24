@@ -7,7 +7,9 @@ using Client.GameObjects;
 using Client.Scripts;
 using Engine;
 using Engine.Base;
+using Engine.Managers;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Client.Scenes
 {
@@ -23,18 +25,23 @@ namespace Client.Scenes
         {
             AddObject(new TestObject());
 
-            AddObject(new SimplePlayerObject(new Vector3(0, 0, 10)));
+            AddObject(new SimplePlayerObject(new Vector3(0, 0, 100)));
+            AddObject(new StaticMeshObject("plane", new Vector3(0, -2, 0)));
+            //cube1 = new SimpleMeshObject("cube", new Vector3(0, 0, -10));
+            //cube2 = new SimpleMeshObject("cube", new Vector3(5, 0, -10));
 
-            cube1 = new SimpleMeshObject("cube", new Vector3(0, 0, -10));
-            cube2 = new SimpleMeshObject("cube", new Vector3(5, 0, -10));
-
-            AddObject(cube1);
-            AddObject(cube2);
+            //AddObject(cube1);
+            //AddObject(cube2);
 
             base.Initialize();
 
-            cube1volume = cube1.GetComponent<BoundingVolumesTest>();
-            Cube2Volume = cube2.GetComponent<BoundingVolumesTest>();
+            //cube1volume = cube1.GetComponent<BoundingVolumesTest>();
+            //Cube2Volume = cube2.GetComponent<BoundingVolumesTest>();
+        }
+
+        void SpawnCube()
+        {
+            AddObject(new SimpleMeshObject("cube", new Vector3(0, 5, -10)));
         }
 
         public override void Update()
@@ -48,11 +55,16 @@ namespace Client.Scenes
             //    System.Diagnostics.Trace.WriteLine("No Collision");
             //}
 
-            float? distance = Cube2Volume.DoesRayIntersectWith(cube1volume.AABB);
+            //float? distance = Cube2Volume.DoesRayIntersectWith(cube1volume.AABB);
 
-            if(distance != null)
+            //if(distance != null)
+            //{
+            //    System.Diagnostics.Trace.WriteLine("Hit! " + cube1volume.Owner.ID + ",Distance: ");
+            //}
+
+            if(InputManager.IsKeyPressed(Keys.Space))
             {
-                System.Diagnostics.Trace.WriteLine("Hit! " + cube1volume.Owner.ID + ",Distance: ");
+                SpawnCube();
             }
 
             base.Update();

@@ -1,5 +1,4 @@
-﻿using Client.Scripts;
-using Engine.Base;
+﻿using Engine.Base;
 using Engine.Components.Graphics;
 using Engine.Components.Physics;
 using Microsoft.Xna.Framework;
@@ -11,22 +10,20 @@ using System.Threading.Tasks;
 
 namespace Client.GameObjects
 {
-    class SimpleMeshObject : GameObject
+    class StaticMeshObject : GameObject
     {
         private string asset;
 
-        public SimpleMeshObject(string Asset, Vector3 location) : base(location)
+        public StaticMeshObject(string asset, Vector3 position) : base(position)
         {
-            asset = Asset;
+            this.asset = asset;
         }
 
         public override void Initialize()
         {
             AddComponent(new BasicEffectModel(asset));
-            AddComponent(new BoxBody(1));
-            //AddComponent(new BoundingVolumesTest());
-            //AddComponent(new RotateObject(asset, new Vector3(0, 1, 0)));
-            //AddComponent(new BobbingObject(asset, 2f));
+            AddComponent(new StaticMeshBody());
+
             base.Initialize();
         }
     }
